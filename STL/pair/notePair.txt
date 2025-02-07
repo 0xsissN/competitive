@@ -1,0 +1,21 @@
+Usado para combinar dos valores 
+pair<> p;
+
+.first -> Acceder al primer valor
+.second -> " " segundo "
+= make_pair() -> Dar valores
+tie() -> Empaqueta los valores dentro de variables separadas
+
+vector<pair<>> vp;
+.push_back({}) -> Introducir datos
+
+vector<pair<pair<>>> vpp;
+.push_back({,{}}) -> datos
+
+para ordenar por el primer valor
+sort();
+
+para ordenar por el segundo valor
+sort(p5.begin(), p5.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
+       return a.second < b.second;
+});

@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1694555778 source:d:\c++\competitive\basic\problem9\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

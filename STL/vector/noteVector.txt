@@ -1,0 +1,22 @@
+Vectores tienen la habilidad de cambiar el tamanio 
+La informacion es insertada al final
+
+Capacity
+begin() -> Retorna un puntero iterador al primer elemento del vector
+end() -> " " " " " " al ultimo " " "
+rbegin() -> " " " " " al ultimo elemento del vector
+rend() -> " " " " " al primer " " "
+max_size() -> Retorna el numero maximo de elementos que un vector puede alojar
+capacity() -> Retorna el tamanio de el espacio alojado en el vector
+resize(n) -> Configura el tamanio del vector a 'n' elements
+empty() -> Retorna si el vector esta vacio
+
+Acceso
+front() -> Retorna una referencia al primer elemento del vector
+back() -> " " " " ultimo " " "
+
+Modificadores
+push_back() -> Empuja elementos dentro de un vector por la espalda
+pop_back() -> Remueve elementos por la espalda
+erase() -> Remueve elementos de un contenedor
+clear() -> Remueve todos los elementos 

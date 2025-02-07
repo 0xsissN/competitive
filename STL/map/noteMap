@@ -1,0 +1,24 @@
+Mapa ordena de menor a mayor las llaves
+map<int, int> mp
+
+.size() -> Tamanio del mapa
+.begin() -> Devuelve el iterador al primer valor
+.end() -> " " " " ultimo "
+.erase() -> Elimina la llave dentro del mapa
+.clear() -> Limpia el mapa
+.empty() -> Devuelve si el mapa esta vacio
+
+unordered_map<> ump;
+Tiene las mismas funciones que map
+No tiene un orden
+
+multimap<> mm;
+Permite llaves duplicadas
+Mantiene un orden en las llaves
+Para insertar valores se utiliza -> .insert(make_pair(1, 100))
+Mismas funciones que map
+
+unordered_multimap<> umm;
+No tiene un orden
+Para insertar valores se utiliza -> .insert(make_pair(1, 100))
+Mismas funciones que map

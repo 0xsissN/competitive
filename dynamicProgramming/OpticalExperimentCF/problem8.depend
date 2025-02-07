@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1695163112 source:d:\c++\competitive\dynamic\problem8\main.cpp
+	<iostream>
+	<bits/stdc++.h>
+

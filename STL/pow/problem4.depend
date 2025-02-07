@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1692305203 source:d:\c++\competitive\basic\problem4\main.cpp
+	<iostream>
+	<math.h>
+

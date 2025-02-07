@@ -1,0 +1,30 @@
+Set -> Es un contenedor en el cual cada elemento es unico
+Tiene un orden ascedente o descendente
+Los valores son inmutables, no pueden ser modificados
+
+Tiempo de complidad
+Insercion -> O(log n)
+Eliminacion -> O(log n)
+
+Basicos
+begin() -> Retorna un iterador al primer elemento
+end() -> " " " " ultimo "
+size() -> Retorna el tamanio
+empty() -> Retorna si el set esta vacio
+count() -> Retorna si existe el elemento en el set
+
+Comparadores
+multiset<int, greater<int> > gquiz1;
+greater<int> -> Ordena de mayor a menor
+
+multiset<int, less<int> > gquiz1;
+less<int> -> Ordena de menor a mayor
+
+unordered_set -> Es similar al set
+Los elementos se insertan sin un orden especifico, ni de entrada
+
+Multiset -> Tiene las mismas funciones que el set
+Permite duplicados y mantiene un orden
+Mejor que crear un vector<int> y aplicar sort()
+
+
