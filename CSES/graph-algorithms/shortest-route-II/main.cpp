@@ -24,59 +24,43 @@ const int MOD = 998244353;
 const int tam = (int)2e5 + 5;
 
 ll cdiv(ll a, ll b) {
-	return a / b + ((a ^ b) > 0 && a % b);
+ return a / b + ((a ^ b) > 0 && a % b);
 }  // divide a by b rounded up
 ll fdiv(ll a, ll b) {
-	return a / b - ((a ^ b) < 0 && a % b);
+ return a / b - ((a ^ b) < 0 && a % b);
 }  // divide a by b rounded down
 
-vector<vector<pair<ll, ll>>> graph;
-
-vll dijkstra(ll r, ll n){
-	vll dist(n + 1, INF);
-	dist[r] = 0;
-	priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
-	
-	pq.push({0, r});
-	
-	while(!pq.empty()){
-		int u = pq.top().second;
-		int d = pq.top().first;
-		pq.pop();
-		
-		if(d > dist[u])
-			continue;
-
-		for(auto i : graph[u]){
-			int v = i.first;
-			int w = i.second;
-			if(dist[u] + w < dist[v]){
-				dist[v] = dist[u] + w;
-				pq.push({dist[v], v});
-			}
-		}
-	}
-	
-	return dist;
-}
-
 void solve() {
-	ll n, m; cin >> n >> m;
-	graph.resize(n + 1);
-	
-	FOR(i, 0, m){
-		ll u, v, w; cin >> u >> v >> w;
-		graph[u].pb({v, w});
-		graph[v].pb({u, w});
-	}
+    int n, m, q; cin >> n >> m >> q;
+    vector<vector<ll>> dist(n + 1, vector<ll>(n + 1, INF));
+    FOR(i, 0, m){
+        ll u, v, w; cin >> u >> v >> w;
+        dist[u][v] = min(w, dist[u][v]);
+        dist[v][u] = min(w, dist[u][v]);
+    }
 
-	vll dist = dijkstra(1, n);
+    FOR(i, 1, n + 1){
+        dist[i][i] = 0;
+    }
 
-	FOR(i, 1, sz(dist)){
-		cout << dist[i] << " ";
-	}
+    FOR(k, 1, n + 1){
+        FOR(i, 1, n + 1){
+            FOR(j, 1, n + 1){
+                if(i != k && j != k && i != j){
+                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+                }
+            }
+        }
+    }
 
-	cout << N;
+    FOR(i, 0, q){
+        int u, v; cin >> u >> v;
+        if(dist[u][v] == INF){
+            cout << -1 << N;
+        }else{
+            cout << dist[u][v] << N;
+        }
+    }
 }
 
 int main() { 

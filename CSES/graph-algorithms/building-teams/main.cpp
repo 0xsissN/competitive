@@ -19,64 +19,57 @@ typedef vector<long long> vll;
 typedef pair<int, int> pi;
 typedef pair<long long, long long> pl;
 
-const long long INF = 1e18; 
+const int INF = 1e9 + 7; 
 const int MOD = 998244353;
 const int tam = (int)2e5 + 5;
 
 ll cdiv(ll a, ll b) {
-	return a / b + ((a ^ b) > 0 && a % b);
+ return a / b + ((a ^ b) > 0 && a % b);
 }  // divide a by b rounded up
 ll fdiv(ll a, ll b) {
-	return a / b - ((a ^ b) < 0 && a % b);
+ return a / b - ((a ^ b) < 0 && a % b);
 }  // divide a by b rounded down
 
-vector<vector<pair<ll, ll>>> graph;
+vector<vi> adj;
+vi ans;
 
-vll dijkstra(ll r, ll n){
-	vll dist(n + 1, INF);
-	dist[r] = 0;
-	priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> pq;
-	
-	pq.push({0, r});
-	
-	while(!pq.empty()){
-		int u = pq.top().second;
-		int d = pq.top().first;
-		pq.pop();
-		
-		if(d > dist[u])
-			continue;
+bool dfs(int node, int prev){
+    if(ans[node] != 0)
+        return ans[node] != prev;
 
-		for(auto i : graph[u]){
-			int v = i.first;
-			int w = i.second;
-			if(dist[u] + w < dist[v]){
-				dist[v] = dist[u] + w;
-				pq.push({dist[v], v});
-			}
-		}
-	}
-	
-	return dist;
+    ans[node] = prev == 1 ? 2 : 1;
+    for(auto i : adj[node]){
+        if(!dfs(i, ans[node]))
+            return false;
+    }
+
+    return true;
 }
 
 void solve() {
-	ll n, m; cin >> n >> m;
-	graph.resize(n + 1);
-	
-	FOR(i, 0, m){
-		ll u, v, w; cin >> u >> v >> w;
-		graph[u].pb({v, w});
-		graph[v].pb({u, w});
-	}
+    int V, m; cin >> V >> m;
+    adj.resize(V + 1);
+    ans.resize(V + 1);
 
-	vll dist = dijkstra(1, n);
+    FOR(i, 0, m){
+        int u, v; cin >> u >> v;
+        adj[u].pb(v);
+        adj[v].pb(u);
+    }
 
-	FOR(i, 1, sz(dist)){
-		cout << dist[i] << " ";
-	}
+    bool val = 0;
+    FOR(i, 1, V + 1){
+        val = dfs(i, 0);
+        if(!val){
+            cout << "IMPOSSIBLE" << N;
+            return;
+        }
+    }
 
-	cout << N;
+    FOR(i, 1, V + 1){
+        cout << ans[i] << " ";
+    }
+    cout << N;
 }
 
 int main() { 
