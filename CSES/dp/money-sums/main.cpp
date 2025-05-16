@@ -31,38 +31,43 @@ ll fdiv(ll a, ll b) {
 }  // divide a by b rounded down
 
 void solve() {
-    string sa, sb; cin >> sa >> sb;
-    string a = "$", b = "$";
-    a += sa;
-    b += sb;
+    int n; cin >> n;
+    vi nums(n);
+    int sm = 0;
+    FOR(i, 0, n){
+        int x; cin >> x;
+        nums[i] = x;
+        sm += x;
+    } 
 
-    int aa = sz(a), bb = sz(b);
+    vi dp(sm + 1, 0);
+    dp[0] = 1;
+    int r = 0;
 
-    vector<vi> dp(aa, vi(bb));
-
-    FOR(i, 0, aa){
-        dp[0][i] = i;
-    }
-    FOR(i, 0, bb){
-        dp[i][0] = i;
-    }
-
-    FOR(i, 1, aa){
-        FOR(j, 1, bb){
-            if(a[i] == b[j]){
-                dp[i][j] = dp[i - 1][j - 1];
-            }else{
-                dp[i][j] = min(dp[i - 1][j - 1], min(dp[i - 1][j], dp[i][j - 1])) + 1;
+    FOR(i, 0, n){
+        for(int j = sm; j >= 0; j--){
+            if(j - nums[i] < 0) break;
+            if(dp[j - nums[i]] == 1){
+                dp[j] = 1;
             }
         }
     }
 
-    FOR(i, 1, aa){
-        for(auto j : dp[i]){
-            cout << j << " ";
+    FOR(i, 1, sm + 1){
+        if(dp[i] == 1){
+            r++;
         }
-        cout << N;
     }
+
+    cout << r << N;
+    
+    FOR(i, 1, sm + 1){
+        if(dp[i] == 1){
+            cout << i << " ";
+        }
+    }
+
+    cout << N;
 }
 
 int main() { 
